@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Researched, sourced 356A restoration guides — verified on a real 1959 356A 1600 Super.' } = Astro.props;
+const path = Astro.url.pathname;
+const current = (prefix: string) =>
+  path === prefix || (prefix !== '/' && path.startsWith(prefix)) ? 'page' : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} — The 356 Workshop</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <meta name="theme-color" content="#2c4238" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <a class="logo" href="/">THE <b>356</b> WORKSHOP</a>
+        <div class="nav-links">
+          <a href="/the-car" aria-current={current('/the-car')}>The Car</a>
+          <a href="/build-log" aria-current={current('/build-log')}>Build Log</a>
+          <a href="/guides" aria-current={current('/guides')}>Guides</a>
+          <a href="/the-garage" aria-current={current('/the-garage')}>The Garage</a>
+        </div>
+      </nav>
+    </header>
+
+    <slot />
+
+    <footer>
+      <div class="wrap">
+        <div>© 2026 The 356 Workshop · Independent, not affiliated with Porsche AG</div>
+        <div>Some part links are affiliate links — they fund the research.</div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { getCollection } from 'astro:content';
+
+const log = (await getCollection('log')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 4);
+const guides = await getCollection('guides');
+const countFor = (system: string) => guides.filter((g) => g.data.system === system).length;
+const label = (n: number) => (n === 1 ? '1 guide' : `${n} guides`);
+---
+
+<Base title="Home">
+  <div class="hero">
+    <div class="hero-img" style="background-image:url('/photos/hero-booth.jpg')"></div>
+    <div class="hero-scrim"></div>
+    <div class="wrap">
+      <div class="kicker">1959 Porsche 356A 1600 Super · Fjord Green · Matching Numbers</div>
+      <h1>Fifty years in a Texas machine shop. Now coming back to the road.</h1>
+      <p>
+        Beneath a coat of black spray paint was its original Fjord Green finish. More importantly, the car
+        still retained its matching-numbers Super engine, original transmission, and factory-stamped body
+        panels. This site documents the restoration — the discoveries, decisions, mistakes, and gradual
+        reassembly — alongside a growing library of researched, sourced 356A guides.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-red" href="/the-car">Meet the Car</a>
+        <a class="btn btn-ghost" href="/guides">Browse the Guides</a>
+      </div>
+    </div>
+    <div class="hero-caption">In the booth — masked for primer · body preparation phase</div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>From the build log</h2>
+        <a href="/build-log">Full log →</a>
+      </div>
+      {log.map((entry) => (
+        <div class="log-entry">
+          <div class="log-date">{entry.data.chapter} · {entry.data.tag}</div>
+          <div>
+            <h4>{entry.data.title}</h4>
+            <p>{entry.data.summary}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>The guides</h2>
+        <a href="/guides">All systems →</a>
+      </div>
+      <p style="max-width:640px;margin:-10px 0 24px;color:var(--ink-soft);font-size:15px">
+        Every job on this car generates a researched reference guide: forum consensus and book sources
+        consolidated, then verified in the shop. Organized by system and by task.
+      </p>
+      <div class="grid g4">
+        <a class="card" href="/guides">
+          <div class="sys-num">01</div>
+          <h3>Body & Chassis</h3>
+          <p>Floor pans, sills, tar boards, panel fit, corrosion protection</p>
+          <div class="count">{label(countFor('Body & Chassis'))} · in progress on the car</div>
+        </a>
+        <a class="card" href="/guides">
+          <div class="sys-num">02</div>
+          <h3>Engine · Type 616</h3>
+          <p>The matching-numbers Super engine: assessment, fuel, ignition</p>
+          <div class="count">{label(countFor('Engine · Type 616'))} · runs, assessment ahead</div>
+        </a>
+        <a class="card" href="/guides">
+          <div class="sys-num">03</div>
+          <h3>Brakes & Suspension</h3>
+          <p>Full brake rebuild, bushings, sway bars, steering</p>
+          <div class="count">Next major phase</div>
+        </a>
+        <a class="card" href="/guides">
+          <div class="sys-num">04</div>
+          <h3>Electrical · 6V</h3>
+          <p>Harness decision, grounding, hidden reliability upgrades</p>
+          <div class="count">Decision pending</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Open decisions</h2>
+        <a href="/the-car#decisions">All decisions & reasoning →</a>
+      </div>
+      <div class="grid g3">
+        <a class="card task-card" href="/the-car#decisions">
+          <span class="pill open">Open</span>
+          <h3>Steel wheels vs. custom aluminum</h3>
+          <p>Original appearance vs. unsprung weight. The math, the date codes, and where we're leaning.</p>
+        </a>
+        <a class="card task-card" href="/the-car#decisions">
+          <span class="pill open">Open</span>
+          <h3>Interior: factory beige or darker?</h3>
+          <p>Four directions explored — from strict factory beige leatherette to cordovan with Speedster seats.</p>
+        </a>
+        <a class="card task-card" href="/the-car#decisions">
+          <span class="pill open">Open</span>
+          <h3>Original paint or full repaint?</h3>
+          <p>What survives under the black spray paint decides it. Fjord Green either way.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+</Base>

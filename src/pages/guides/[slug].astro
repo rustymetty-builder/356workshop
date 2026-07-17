@@ -1,0 +1,115 @@
+---
+import Base from '../../layouts/Base.astro';
+import SponsorBox from '../../components/SponsorBox.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides.map((guide) => ({ params: { slug: guide.id }, props: { guide } }));
+}
+
+const { guide } = Astro.props;
+const { data } = guide;
+const { Content, headings } = await render(guide);
+const toc = headings.filter((h) => h.depth === 2);
+
+const related = (await getCollection('guides'))
+  .filter((g) => g.id !== guide.id && g.data.system === data.system)
+  .slice(0, 4);
+
+const updated = data.updated.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+---
+
+<Base title={data.title} description={data.dek}>
+  <div class="wrap">
+    <div class="crumbs">
+      <a href="/">Home</a> / <a href="/guides">{data.system}</a> / {data.title}
+    </div>
+    <div class="article-head">
+      <h1>{data.title}</h1>
+      <p class="dek">{data.dek}</p>
+      <div class="meta-row">
+        <span class="meta-chip">Applies to: <b>{data.applies_to}</b></span>
+        <span class="meta-chip">Difficulty: <b>{data.difficulty}</b></span>
+        {data.time && <span class="meta-chip">Time: <b>{data.time}</b></span>}
+        <span class="meta-chip">Updated: <b>{updated}</b></span>
+      </div>
+      {data.status === 'verified' ? (
+        <div class="status-badge verified">✓ Verified on the shop car{data.verified_on ? ` — ${data.verified_on}` : ''}</div>
+      ) : (
+        <div class="status-badge upcoming">◐ Research consolidated — shop-car verification ahead</div>
+      )}
+    </div>
+
+    <div class="article-body">
+      <div class="prose">
+        <Content />
+
+        {data.parts.length > 0 && (
+          <div class="parts-block">
+            <div class="pb-head">Parts used <span>Affiliate links · they fund the research</span></div>
+            {data.parts.map((p) => (
+              <div class="part-row">
+                <div>
+                  <h5>{p.name}</h5>
+                  {p.pn && <div class="pn">PN {p.pn}</div>}
+                  {p.note && <div class="note">{p.note}</div>}
+                </div>
+                {p.url ? (
+                  <a class="buy" href={p.url} rel="sponsored noopener" target="_blank">{p.supplier} →</a>
+                ) : (
+                  <span class="buy">{p.supplier}</span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {data.sources.length > 0 && (
+          <div class="sources">
+            <h4>Where this guide comes from</h4>
+            <ul>
+              {data.sources.map((s) => (
+                <li>
+                  <span class="src-type">{s.type}</span>
+                  {s.url ? <a href={s.url}>{s.ref}</a> : s.ref}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <aside>
+        {toc.length > 0 && (
+          <div class="side-box">
+            <h4>On this page</h4>
+            <div class="toc">
+              {toc.map((h) => (
+                <a href={`#${h.slug}`}>{h.text}</a>
+              ))}
+            </div>
+          </div>
+        )}
+        <div class="side-box">
+          <h4>The shop car</h4>
+          <div style="font-size:13.5px;color:var(--ink-soft)">
+            1959 356A T2 1600 Super, Fjord Green, matching numbers. Fifty years in Texas storage.
+          </div>
+          <div class="toc" style="margin-top:8px"><a href="/the-car">Meet the car →</a></div>
+        </div>
+        <SponsorBox section={data.system} />
+        {related.length > 0 && (
+          <div class="side-box">
+            <h4>Related guides</h4>
+            <div class="toc">
+              {related.map((g) => (
+                <a href={`/guides/${g.id}`}>{g.data.title}</a>
+              ))}
+            </div>
+          </div>
+        )}
+      </aside>
+    </div>
+  </div>
+</Base>

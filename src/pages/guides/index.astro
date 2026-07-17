@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const guides = await getCollection('guides');
+const systems = [
+  'Body & Chassis',
+  'Engine · Type 616',
+  'Transmission',
+  'Brakes & Suspension',
+  'Electrical · 6V',
+  'Interior',
+  'Exterior Trim & Glass',
+  'Paint & Finishes',
+  'Wheels & Tires',
+];
+const bySystem = systems
+  .map((system) => ({
+    system,
+    items: guides
+      .filter((g) => g.data.system === system)
+      .sort((a, b) => +b.data.updated - +a.data.updated),
+  }))
+  .filter((s) => s.items.length > 0);
+
+const pillClass = (status: string) =>
+  status === 'verified' ? 'pill done' : status === 'research' ? 'pill open' : 'pill';
+const pillText = (status: string) =>
+  status === 'verified' ? 'Verified on the shop car' : status === 'research' ? 'In research' : 'Planned';
+---
+
+<Base title="Guides" description="Researched, sourced 356A restoration guides — organized by system and by task, verified on VIN 108689.">
+  <div class="wrap">
+    <div class="crumbs"><a href="/">Home</a> / Guides</div>
+    <div class="article-head">
+      <h1>The Guides</h1>
+      <p class="dek">
+        Forum consensus, book sources, and factory documentation consolidated into task-oriented guides —
+        then verified during the restoration of our 1959 356A 1600 Super. Every spec cites its source;
+        nothing unverified is presented as verified.
+      </p>
+    </div>
+
+    <div style="max-width:760px;padding:24px 0 64px">
+      {bySystem.map(({ system, items }) => (
+        <section style="padding:18px 0">
+          <div class="sec-head" style="margin-bottom:14px">
+            <h2>{system}</h2>
+          </div>
+          {items.map((g) => (
+            <a class="card task-card" href={`/guides/${g.id}`} style="margin-bottom:14px">
+              <span class={pillClass(g.data.status)}>{pillText(g.data.status)}</span>
+              <h3>{g.data.title}</h3>
+              <p>{g.data.dek}</p>
+            </a>
+          ))}
+        </section>
+      ))}
+
+      <div class="callout shop">
+        <b>More on the way:</b> each phase of the shop car's restoration generates new verified guides —
+        brakes and suspension are the next major mechanical phase. The <a href="/build-log">build log</a>
+        shows what's currently on the bench.
+      </div>
+    </div>
+  </div>
+</Base>
