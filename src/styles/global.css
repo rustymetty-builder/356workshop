@@ -31,6 +31,14 @@ header { position: sticky; top: 0; z-index: 50; background: var(--ink); color: #
 .nav-links a { color: #cfc8ba; }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: #fff; text-decoration: none; }
 @media (max-width: 760px) { .nav-links { gap: 14px; } }
+@media (max-width: 640px) {
+  .nav { flex-wrap: wrap; row-gap: 8px; padding: 12px 16px; }
+  .logo { font-size: 17px; }
+  .nav-links { flex-wrap: wrap; gap: 8px 14px; font-size: 11.5px; }
+}
+@media (max-width: 360px) {
+  .nav-links { gap: 6px 10px; font-size: 10.5px; }
+}
 
 .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
@@ -132,7 +140,7 @@ table.spec td:last-child { font-family: var(--mono); font-size: 13px; }
 .parts-block { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin: 20px 0; }
 .parts-block .pb-head { background: var(--ink); color: #f3efe7; padding: 12px 18px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .parts-block .pb-head span { font-family: var(--mono); font-size: 10px; color: #9b9487; text-transform: none; letter-spacing: .3px; }
-.part-row { display: flex; justify-content: space-between; gap: 14px; padding: 14px 18px; border-bottom: 1px solid var(--line); background: #fff; align-items: center; }
+.part-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 14px; padding: 14px 18px; border-bottom: 1px solid var(--line); background: #fff; align-items: center; }
 .part-row:last-child { border-bottom: none; }
 .part-row .pn { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
 .part-row h5 { font-size: 14.5px; font-weight: 600; }
