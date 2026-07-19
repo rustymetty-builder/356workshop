@@ -83,7 +83,7 @@ Bench synchronization, final jetting for the 1600 Super, and on-car tuning happe
 The reason this guide exists: the engine firing on these rebuilt carburetors, for the first time in over fifty years.
 
 <figure>
-  <video controls preload="metadata" poster="/photos/guides/carbs/06-finished-pair.jpg">
+  <video controls preload="metadata" poster="/photos/guides/carbs/engine-running-poster.jpg">
     <source src="/video/engine-first-start.mp4" type="video/mp4" />
   </video>
   <figcaption>VIN 108689's Type 616 running again — first start in 50+ years, on the rebuilt Zenith 32 NDIX pair above. Phone video, low resolution, kept as shot.</figcaption>
