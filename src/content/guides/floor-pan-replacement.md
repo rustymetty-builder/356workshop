@@ -52,8 +52,8 @@ Reproduction pans vary in stamping fidelity. We used Sierra Madre panels; the ri
 Do the rust survey on a lift, underside first, before committing to a repair plan. On our car the survey found battery box rot and floor rust, but sills in better condition than the floor suggested — that changed the scope of the metal phase.
 
 <figure>
-  <img src="/photos/guides/floors/03-battery-box-rot.jpg" alt="Rear cabin sheet metal cut open to route the generator into the cabin" />
-  <figcaption>Not the battery box — this is the rear cabin. A previous owner cut this sheet metal to move the 6V generator into the cabin area, likely to keep it warm. That's not where it belongs: the metal gets repaired and the generator goes back into the engine bay, where it was designed to live.</figcaption>
+  <img src="/photos/guides/floors/03-battery-box-rot.jpg" alt="Access hole cut in the sheet metal near the starter, in its correct factory position" />
+  <figcaption>Not the battery box — this is the starter, sitting exactly where it belongs. A previous owner cut an access hole in the sheet metal here rather than removing and repairing it properly. It'll be closed up with a new sheet metal patch.</figcaption>
 </figure>
 
 Rules we followed, from the car's restoration philosophy:
