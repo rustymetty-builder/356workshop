@@ -1,0 +1,210 @@
+---
+const photos = [
+  { src: '/photos/lx470/exterior-front-3q.jpg', alt: '1998 Lexus LX470, front three-quarter view' },
+  { src: '/photos/lx470/exterior-side.jpg', alt: 'Driver side profile' },
+  { src: '/photos/lx470/exterior-rear-3q.jpg', alt: 'Rear three-quarter view' },
+  { src: '/photos/lx470/exterior-rear.jpg', alt: 'Straight rear view' },
+  { src: '/photos/lx470/exterior-front.jpg', alt: 'Straight front view' },
+  { src: '/photos/lx470/interior-front.jpg', alt: 'Front seats and dashboard' },
+  { src: '/photos/lx470/interior-dash.jpg', alt: 'Dashboard and console detail' },
+  { src: '/photos/lx470/interior-doors-open.jpg', alt: 'Doors open, interior condition' },
+  { src: '/photos/lx470/cargo.jpg', alt: 'Cargo area, seats up' },
+  { src: '/photos/lx470/cargo-open.jpg', alt: 'Rear tailgate and cargo door open' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>1998 Lexus LX470 — For Sale</title>
+    <meta name="description" content="1998 Lexus LX470 for sale. Lifetime West Coast car, bone dry, no rust, recently serviced." />
+    <style>
+      :root {
+        --ink: #1c1c1a;
+        --ink-soft: #5a5a54;
+        --line: #e3e0d8;
+        --bg: #faf9f6;
+        --accent: #6b3d2e;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.55;
+      }
+      .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+      header.page-head {
+        padding: 36px 0 24px;
+        border-bottom: 1px solid var(--line);
+      }
+      header.page-head .kicker {
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin-bottom: 6px;
+      }
+      h1 { font-size: 32px; margin: 0 0 8px; }
+      .price-row {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+      .price {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent);
+      }
+      .odo { color: var(--ink-soft); font-size: 15px; }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin: 28px 0;
+      }
+      .gallery img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+        aspect-ratio: 4 / 3;
+      }
+      .gallery a:first-child {
+        grid-column: 1 / -1;
+      }
+      .gallery a:first-child img {
+        aspect-ratio: 16 / 10;
+      }
+      section { padding: 24px 0; border-bottom: 1px solid var(--line); }
+      section:last-of-type { border-bottom: none; }
+      h2 { font-size: 20px; margin: 0 0 14px; }
+      ul.spec-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 24px;
+      }
+      ul.spec-list li {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 8px 0;
+        border-bottom: 1px dashed var(--line);
+        font-size: 15px;
+      }
+      ul.spec-list li b { text-align: right; }
+      ul.checklist { padding-left: 20px; margin: 0; }
+      ul.checklist li { margin-bottom: 8px; }
+      .callout {
+        background: #f3efe6;
+        border-left: 3px solid var(--accent);
+        padding: 14px 16px;
+        border-radius: 4px;
+        font-size: 14.5px;
+        margin-top: 16px;
+      }
+      .contact {
+        background: var(--ink);
+        color: #fff;
+        text-align: center;
+        padding: 32px 20px;
+        border-radius: 10px;
+        margin: 28px 0;
+      }
+      .contact a {
+        color: #fff;
+        font-weight: 600;
+        font-size: 18px;
+      }
+      footer {
+        text-align: center;
+        color: var(--ink-soft);
+        font-size: 12.5px;
+        padding: 24px 20px 40px;
+      }
+      @media (max-width: 560px) {
+        .gallery { grid-template-columns: 1fr 1fr; }
+        ul.spec-list { grid-template-columns: 1fr; }
+        h1 { font-size: 26px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="page-head">
+        <div class="kicker">For Sale · Private Party</div>
+        <h1>1998 Lexus LX470</h1>
+        <div class="price-row">
+          <span class="odo">Bone dry, no rust · lifetime West Coast car</span>
+        </div>
+      </header>
+
+      <section>
+        <div class="gallery">
+          {photos.map((p) => (
+            <a href={p.src} target="_blank" rel="noopener">
+              <img src={p.src} alt={p.alt} loading="lazy" />
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2>The short version</h2>
+        <p>
+          A well-kept 1998 LX470 — Toyota Land Cruiser mechanicals under Lexus trim, the version most people
+          quietly agree they should have bought. Corporate car early in its life, then owned and driven on the
+          West Coast since. Bone dry, no rust. Just detailed and ready for its next set of adventures.
+        </p>
+      </section>
+
+      <section>
+        <h2>Condition & history</h2>
+        <ul class="checklist">
+          <li>Purchased from Sacramento, CA — corporate car prior to our ownership</li>
+          <li>Lifetime West Coast car, dry climate throughout — no rust, no rot</li>
+          <li>Recent oil change</li>
+          <li>Recent transmission service</li>
+          <li>All receipts on hand from every owner</li>
+          <li>Everything works as it should, with one exception: the automatic passenger-side mirror retractor doesn't operate (manual adjustment fine)</li>
+          <li>Just detailed, inside and out</li>
+        </ul>
+        <div class="callout">
+          <b>Documentation:</b> full CARFAX and the complete service file are available to serious buyers —
+          documented accident-free ownership history aside from one minor, reported incident, and a long
+          service record. Ask and we'll send it over.
+        </div>
+      </section>
+
+      <section>
+        <h2>Specs</h2>
+        <ul class="spec-list">
+          <li>Year <b>1998</b></li>
+          <li>Model <b>LX470</b></li>
+          <li>Engine <b>4.7L V8</b></li>
+          <li>Drivetrain <b>Full-time AWD</b></li>
+          <li>Body <b>4-door wagon / SUV</b></li>
+          <li>Location <b>Pacific Northwest</b></li>
+        </ul>
+      </section>
+
+      <div class="contact">
+        <p style="margin:0 0 10px;font-size:15px;">Interested? Reach out directly.</p>
+        <a href="mailto:rustymetty@gmail.com">rustymetty@gmail.com</a>
+      </div>
+    </div>
+    <footer>
+      This is a standalone listing page and is not part of 356workshop.com's restoration content.
+    </footer>
+  </body>
+</html>
