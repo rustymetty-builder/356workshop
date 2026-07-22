@@ -171,6 +171,7 @@ aside .toc a:hover { color: var(--red); }
 .for-sale-banner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; background: var(--red-dark); color: #fff; border-radius: 10px; padding: 18px 22px; margin: 18px 0 26px; }
 .for-sale-banner .fs-label { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.85; }
 .for-sale-banner .fs-price { font-family: var(--serif); font-size: 30px; font-weight: 700; margin-top: 2px; }
+.for-sale-banner .fs-note { font-size: 13px; opacity: 0.85; margin-top: 6px; max-width: 380px; }
 .for-sale-banner a.fs-link { background: #fff; color: var(--red-dark); font-family: var(--mono); font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 6px; text-decoration: none; white-space: nowrap; }
 .for-sale-banner a.fs-link:hover { background: #f2e9e5; }
 
